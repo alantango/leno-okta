@@ -1,0 +1,21 @@
+<div *ngIf="error" class="error">
+    {{ error }}
+</div>
+
+<h4>Home</h4>
+
+<div *ngIf="isAuthenticated">
+     <span>Logged in:</span>
+     <button id="logout-button" style='margin-left:30px' (click)="logout()">Logout</button>
+    <div>
+        <pre>{{infobag | json}}</pre>
+    </div>
+</div>
+
+<div *ngIf="!isAuthenticated">
+    Not authenticated yet.
+    <p>
+        <button id="login-button" class="ui primary button" role="button" (click)="login()">Login</button>
+    </p>
+
+</div>
