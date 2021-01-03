@@ -10,5 +10,8 @@ export default {
     // testing: {
     //   disableHttpsCheck: `${OKTA_TESTING_DISABLEHTTPSCHECK}`
     // }
+  },
+  resourceServer: {
+    messagesUrl: 'http://localhost:8000/api/messages',
   }
 };

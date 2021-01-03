@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
+import { HttpClientModule } from '@angular/common/http';
 import config from './app.config';
 
 import {
@@ -12,15 +13,18 @@ import {
   OktaAuthModule,
   // OktaCallbackComponent,
 } from '@okta/okta-angular';
+import { MessagesComponent } from './messages/messages.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    MessagesComponent
   ],
   imports: [
     BrowserModule,
     OktaAuthModule,
+    HttpClientModule,
     AppRoutingModule
   ],
   providers: [
