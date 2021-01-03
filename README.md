@@ -31,36 +31,39 @@ https://dev-9535874.okta.com/api/v1/authn
 
 payload of the POST:
 
-password: "xxxxx"  
-stateToken: "00g8oVECE7Rfx6F-o2TDV-MEYTF4EAjxt9sj83KE4Q"  
-username: "xxxx@xxxx.com"  
+**password**: "xxxxx"  
+**stateToken**: "00g8oVECE7Rfx6F-o2TDV-MEYTF4EAjxt9sj83KE4Q"  
+**username**: "xxxx@xxxx.com"  
 
 response 200 cookie contains same stateToken
 
 4. GET redirect to okta (request access code)
 https://dev-9535874.okta.com/login/step-up/redirect
 
-stateToken=00g8oVECE7Rfx6F-o2TDV-MEYTF4EAjxt9sj83KE4Q
+**stateToken**:00g8oVECE7Rfx6F-o2TDV-MEYTF4EAjxt9sj83KE4Q
 
-response 302, location:
+Response 302 redirects to the callback passing the code:
 
-http://localhost:8080/login/callback?code=jRWhwHQ9IWdS3wq06YWcuue9fQfA5glYWyHLBfQPDCA&
-state=hcjK5GUoM55Tdor6HP5VwOFCCGes3ONbUwKoGldIx2q8qo6fp7qrbNY1ByLNB1s3
+http://localhost:8080/login/callback
+
+**code**:jRWhwHQ9IWdS3wq06YWcuue9fQfA5glYWyHLBfQPDCA
+**state**:hcjK5GUoM55Tdor6HP5VwOFCCGes3ONbUwKoGldIx2q8qo6fp7qrbNY1ByLNB1s3
 
 code is authorization code
 
-5a. OPTION to /oauth2/default/v1/token
+5a. OPTION to https://dev-9535874.okta.com/oauth2/default/v1/token
 
-5b. POST to okta, posting auth code in exchange for access token
+5b. POST to okta, posting auth code in exchange for access & ID token
 https://dev-9535874.okta.com/oauth2/default/v1/token
 
-client_id: 0oa2tftujDqF9hQer5d6  
-redirect_uri: http://localhost:8080/login/callback  
-grant_type: authorization_code  
-code: jRWhwHQ9IWdS3wq06YWcuue9fQfA5glYWyHLBfQPDCA  
-code_verifier: 2d771c42a9edb5912afea837beede0291f3689a167d  
+**client_id**: 0oa2tftujDqF9hQer5d6  
+**redirect_uri**: http://localhost:8080/login/callback  
+**grant_type**: authorization_code  
+**code**: jRWhwHQ9IWdS3wq06YWcuue9fQfA5glYWyHLBfQPDCA  
+**code_verifier**: 2d771c42a9edb5912afea837beede0291f3689a167d  
 
-response is the jwt  
+Response is the JWT object:
+
 {  
 **"token_type"**:"Bearer",  
 **"expires_in"**:3600,  
